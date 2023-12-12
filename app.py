@@ -1,6 +1,6 @@
 from openai import OpenAI
 from dotenv import load_dotenv
-import os, eel 
+import os, eel, eel.browsers
 #библиотеки
 load_dotenv()
 #объявление api ключа для связи с ChatGPT
@@ -36,4 +36,6 @@ def get_data(data):
         return text
     
     
-eel.start('index.html')
+eel.browsers.set_path('electron', './node_modules/electron/dist/electron')
+
+eel.start('index.html', mode='electron' , port=8000  ,host='localhost',disable_cache=True, close_callback='close_callback', )
