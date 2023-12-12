@@ -16,7 +16,7 @@ def get_data(data):
         #запрос у ChatGPT
         tell = client.chat.completions.create(
         model= "gpt-3.5-turbo",
-        messages = [{"role": 'user', 'content': 'No comments just text translate '+ data[0] + ' - ' + data[1] + ': "' + data[2] + '"'}],
+        messages = [{"role": 'user', 'content': "tranlation "+ data[0] + "-" + data[1] + ": " + data[2]}],
         stream=False
         )
         
@@ -26,10 +26,10 @@ def get_data(data):
         # Замена возможных текстов из ChatGPT
         if 'Translation: "' in text:
             text = text[14:-1]
+        elif text[0] == '"':
+            text = text[1:-1]
         elif "Translation:" in text:
             text = text[13:]
-        elif text[1:] == '"' and text[:1] == '"':
-             text = text[1:1]
         #Возврат данных обратно в js код
         return text
     
