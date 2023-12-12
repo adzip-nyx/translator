@@ -54,9 +54,7 @@ async function Translate() {
     const oData = [document.getElementById('iLang').value, document.getElementById('oLang').value, document.getElementById('text-area-left').value];
     console.log('Data sent to python script.', oData);
 
-    await eel.send_data(oData);
-
-    document.getElementById('text-area-right'.value) = await eel.get_data()();
+    document.getElementById('text-area-right').value = await eel.get_data(oData)();
 }
 
 initApp();
