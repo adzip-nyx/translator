@@ -38,7 +38,7 @@ async function initApp() {
                 <select class="dropdown" name="lang" id="${id}">
                     ${dropdownOptions}
                 </select>
-                <textarea ${attr} class="app__frame--input" placeholder="${text}" id="iText"></textarea>
+                <textarea id="text-area-${side}" ${attr} class="app__frame--input" placeholder="${text}" id="iText"></textarea>
             </section>
         `;
     }
@@ -50,12 +50,30 @@ async function initApp() {
     `;
 }
 
-function Translate() {
-    const fromLang = document.getElementById('iLang').value;
-    const toLang = document.getElementById('oLang').value;
-    const text = document.getElementById('iText').value;
 
-    console.log(`Перевод с ${fromLang}, на ${toLang}, текст ${text}`);
+const { spawn } = require('child_process');
+const pyFile = spawn('python', ['../app.py']);
+
+
+
+
+
+function Translate() {
+    const inputData = [document.getElementById('iLang').value, document.getElementById('oLang').value, document.getElementById('iText').value];
+
+    const pythonProcess = spawn('python', ['../app.py'], { stdio: ['pipe', 'pipe', 'pipe', 'pipe', process.stderr] });
+
+    const inputJson = JSON.stringify(inputData);
+    pythonProcess.stdin.write(inputJson);
+    pythonProcess.stdin.end();
+
+    pythonProcess.stdout.on('data', (data) => {
+        const outputJson = data.toString();
+        const outputData = JSON.parse(outputJson);
+
+        const textArea = document.getElementById('text-area-right')
+        textArea.innerHTML = outputData
+    });
 }
 
 initApp();
