@@ -3,9 +3,11 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    overflow: hidden;
 }
 
 .app__frame {
+    position: relative;
     height: 100%;
     width: 100%;
 }
@@ -25,7 +27,8 @@
     height: 100%;
     border: none;
     font-family: inherit;
-    padding: 30px;
+    padding: 100px 30px 80px 30px;
+    font-size: 30px;
     resize: none;
 }
 
@@ -38,4 +41,36 @@
 
 .dropdown {
     position: absolute;
+    left: 30px;
+    top: 30px;
+    border: none;
+    background-color: #eee;
+    padding: 15px;
+    width: 200px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.dropdown__option {
+
+}
+
+
+
+
+
+.app__go {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    border: none;
+    background-color: #0077b6;
+    color: #fff;
+    padding: 20px 30px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: 15px;
+    cursor: pointer;
 }

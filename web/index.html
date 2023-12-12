@@ -10,26 +10,10 @@
 
     <link rel="stylesheet" href="./styles/index.css">
 
-    <title>ADZIP-NYX Translator</title>
+    <title>Translator</title>
 </head>
 <body class="page__body">
-    <main class="app">
-        <section class="app__frame app__frame--left">
-            <select class="dropdown" name="lang" id="iLang">
-                <option class="dropdown__option" value="en">English</option>
-                <option class="dropdown__option" value="ru">Russian</option>
-                <option class="dropdown__option" value="by">Belarusian</option>
-            </select>
-            <textarea class="app__frame--input" placeholder="Введите, что вы хотите перевести..." id="iText"></textarea>
-        </section>
-        <section class="app__frame app__frame--right">
-            <select class="dropdown" name="lang" id="oLang">
-                <option class="dropdown__option" value="en">English</option>
-                <option class="dropdown__option" value="ru">Russian</option>
-                <option class="dropdown__option" value="by">Belarusian</option>
-            </select>
-            <textarea class="app__frame--input" placeholder="Введите, что вы хотите перевести..." id="oText"></textarea>
-        </section>
-    </main>
+    <main class="app" id="app"></main>
+    <script src="./app.js"></script>
 </body>
 </html>
