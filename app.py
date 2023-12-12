@@ -7,10 +7,7 @@ client = OpenAI(
     api_key = os.getenv("API_KEY")
 )
 
-print(1)
-eel.init('web')
-
-global tell 
+eel.init('web') 
 
 @eel.expose
 def get_data(data):
@@ -20,7 +17,9 @@ def get_data(data):
         messages = [{"role": 'user', 'content': "tranlation "+ data[0] + "-" + data[1] + ": " + data[2]}],
         stream=False
         )
-
-        return tell.choices[0].message.content
+        text = tell.choices[0].message.content
+        if "Translation:" in text:
+            text = text[12::]
+        return text
 
 eel.start('index.html')
