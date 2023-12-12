@@ -5,16 +5,17 @@
 
 ## Шаг 1. Установка и запуск
 
-Скачайте последнюю версию проекта.
+Скачать последнюю версию проекта [Releases](https://github.com/adzip-nyx/translator/releases/tag/Release).
 
-### С сайта
-
-Скачать [последнюю версию проекта](https://codeload.github.com/adzip-nyx/translator/zip/refs/heads/main).
-
-### Или при помощи Git (возможность быстро обновить проект до последней версии)
+### Шаг 1.1. Или клонируйте репозиторий (Дополнительно)
 
 ```
 git clone https://github.com/adzip-nyx/translator.git
+```
+**Нужно создать файл .env, и вставить свой API-ключ**
+
+```
+API_KEY=<вставьте свой API ключ сюда>
 ```
 
 *Если у вас не установлен git, скачайте его [по ссылке](https://git-scm.com/download/win).*
