@@ -9,7 +9,7 @@ client = OpenAI(
 text = "I am bad"
 tell = client.chat.completions.create(
     model= "gpt-3.5-turbo",
-    messages = [{"role": 'user', 'content': "hi"}],
+    messages = [{"role": 'user', 'content': "tranlation "+ "en" + "-" + "ru"+ ": " + text}],
     stream=False
     
 )
