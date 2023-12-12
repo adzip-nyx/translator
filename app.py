@@ -1,28 +1,32 @@
 from openai import OpenAI
 from dotenv import load_dotenv
-import os, sys, json
-
-
-input_data = sys.stdin.read()
-print(input_data)
-
-
+import os, json, eel
 
 load_dotenv()
 client = OpenAI(
     api_key = os.getenv("API_KEY")
 )
-def translation(tol, inl, text):
+
+print(1)
+eel.init('web')
+global tell, text
+text = ""
+@eel.expose
+def send_data(data):
+    print(2)
     tell = client.chat.completions.create(
         model= "gpt-3.5-turbo",
-        messages = [{"role": 'user', 'content': "tranlation "+ tol + "-" + inl + ": " + text}],
+        messages = [{"role": 'user', 'content': "tranlation "+ data[0] + "-" + data[1] + ": " + data[2]}],
         stream=False
-        
     )
-    return tell.choices[0].message.content
+    text = get_data(tell.choices[0].message.content)
 
 
-out_text = translation("en", "ru", "text")
+@eel.expose
+def get_data():
+    print(text)
+    return text
 
-output_json = json.dumps(out_text)
-print(output_json)
+get_data()
+
+eel.start('index.html')
