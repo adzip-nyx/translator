@@ -1,0 +1,12 @@
+{
+  "name": "translator",
+  "description": "",
+  "scripts": {
+    "start": "electron ./web/main.js"
+  },
+  "author": "adzip-nyx",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^28.0.0"
+  }
+}

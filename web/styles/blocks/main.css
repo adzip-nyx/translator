@@ -1,0 +1,15 @@
+.page {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.page__body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+

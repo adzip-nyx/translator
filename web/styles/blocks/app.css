@@ -1,0 +1,41 @@
+.app {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.app__frame {
+    height: 100%;
+    width: 100%;
+}
+
+.app__frame--left {
+    border-right: 0.5px solid var(--secondary);
+    float: left;
+}
+
+.app__frame--right {
+    border-left: 0.5px solid var(--secondary);
+    float: right;
+}
+
+.app__frame--input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-family: inherit;
+    padding: 30px;
+    resize: none;
+}
+
+.app__frame--input:focus {
+    outline: none;
+}
+
+
+
+
+.dropdown {
+    position: absolute;
+}
