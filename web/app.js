@@ -50,30 +50,13 @@ async function initApp() {
     `;
 }
 
+async function Translate() {
+    const oData = [document.getElementById('iLang').value, document.getElementById('oLang').value, document.getElementById('text-area-left').value];
+    console.log('Data sent to python script.', oData);
 
-const { spawn } = require('child_process');
-const pyFile = spawn('python', ['../app.py']);
+    await eel.send_data(oData);
 
-
-
-
-
-function Translate() {
-    const inputData = [document.getElementById('iLang').value, document.getElementById('oLang').value, document.getElementById('iText').value];
-
-    const pythonProcess = spawn('python', ['../app.py'], { stdio: ['pipe', 'pipe', 'pipe', 'pipe', process.stderr] });
-
-    const inputJson = JSON.stringify(inputData);
-    pythonProcess.stdin.write(inputJson);
-    pythonProcess.stdin.end();
-
-    pythonProcess.stdout.on('data', (data) => {
-        const outputJson = data.toString();
-        const outputData = JSON.parse(outputJson);
-
-        const textArea = document.getElementById('text-area-right')
-        textArea.innerHTML = outputData
-    });
+    document.getElementById('text-area-right'.value) = await eel.get_data()();
 }
 
 initApp();
