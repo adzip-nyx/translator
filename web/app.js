@@ -29,32 +29,64 @@ async function initApp() {
     const languages = await fetchLanguages();
 
     function getFrame(side, id, text, attr) {
-        const dropdownOptions = languages.map(language => {
+        const dropdownOptions = side === "left"
+            ? '<option class="dropdown__option" value="auto" selected>Определить язык</option>'
+            : '';
+    
+        const languageOptions = languages.map(language => {
             return `<option class="dropdown__option" value="${language.name}">${language.name}</option>`;
         }).join('');
-
+    
         return `
             <section class="app__frame app__frame--${side}">
                 <select class="dropdown" name="lang" id="${id}">
                     ${dropdownOptions}
+                    ${languageOptions}
                 </select>
                 <textarea id="text-area-${side}" ${attr} class="app__frame--input" placeholder="${text}" id="iText"></textarea>
             </section>
         `;
     }
+    
 
     app.innerHTML = `
         ${getFrame("left", "iLang", "Введите, что вы хотите перевести...", "")}
+        <button class="app__swap" onclick="swap()">
+            <img class="app__swap--image" src="./assets/icons/swap.svg" alt="Swap">
+        </button>
         ${getFrame("right", "oLang", "", "readonly")}
-        <button class="app__go" onclick="Translate()">Перевести с ChatGPT</button>
+        <button class="app__go" onclick="translateText()">Перевести с ChatGPT<img class="app__go--image" src="./assets/icons/go.svg" alt="Go"></button>
     `;
 }
 
-async function Translate() {
+async function translateText() {
     const oData = [document.getElementById('iLang').value, document.getElementById('oLang').value, document.getElementById('text-area-left').value];
-    console.log('Data sent to python script.', oData);
 
     document.getElementById('text-area-right').value = await eel.get_data(oData)();
+}
+
+function swap() {
+    const leftDropdown = document.getElementById('iLang');
+    const rightDropdown = document.getElementById('oLang');
+
+    const leftDropdownValue = leftDropdown.value;
+    const rightDropdownValue = rightDropdown.value;
+
+    const leftInput = document.getElementById('text-area-left');
+    const rightInput = document.getElementById('text-area-right');
+
+    const leftInputValue = leftInput.value;
+    const rightInputValue = rightInput.value;
+
+    if (leftDropdownValue !== "auto") {
+        leftDropdown.value = rightDropdownValue;
+        rightDropdown.value = leftDropdownValue;
+
+        if (leftInputValue !== "" & rightInputValue !== "") {
+            leftInput.value = rightInputValue;
+            rightInput.value = leftInputValue;
+        }
+    }
 }
 
 initApp();

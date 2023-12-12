@@ -1,4 +1,5 @@
 .app {
+    position: relative;
     height: 100%;
     width: 100%;
     display: grid;
@@ -7,19 +8,26 @@
 }
 
 .app__frame {
+    border-right: 0.5px solid var(--secondary);
     position: relative;
     height: 100%;
     width: 100%;
 }
 
 .app__frame--left {
-    border-right: 0.5px solid var(--secondary);
     float: left;
 }
 
+.app__frame--left .dropdown {
+    left: 30px;
+}
+
 .app__frame--right {
-    border-left: 0.5px solid var(--secondary);
     float: right;
+}
+
+.app__frame--right .dropdown {
+    right: 30px;
 }
 
 .app__frame--input {
@@ -32,6 +40,10 @@
     resize: none;
 }
 
+.app__frame--input::placeholder {
+    color: #B7B7B7;
+}
+
 .app__frame--input:focus {
     outline: none;
 }
@@ -41,15 +53,17 @@
 
 .dropdown {
     position: absolute;
-    left: 30px;
     top: 30px;
     border: none;
     background-color: #eee;
-    padding: 15px;
+    color: #888888;
+    padding-left: 14px;
     width: 200px;
+    height: 40px;
     border-radius: 15px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 400;
 }
 
 .dropdown__option {
@@ -65,12 +79,35 @@
     bottom: 30px;
     right: 30px;
     border: none;
-    background-color: #0077b6;
+    background-color: #000;
     color: #fff;
-    padding: 20px 30px;
     font-size: 20px;
     font-weight: 600;
     font-family: inherit;
     border-radius: 15px;
+    cursor: pointer;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+}
+
+.app__go--image {
+    margin-left: 5px;
+}
+
+
+.app__swap {
+    position: absolute;
+    right: 50%;
+    top: 30px;
+    margin-right: -20px;
+    width: 40px;
+    height: 40px;
+    z-index: 1000;
+    background-color: #000;
+    border-radius: 15px;
+    border: none;
     cursor: pointer;
 }
