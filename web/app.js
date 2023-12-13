@@ -50,19 +50,30 @@ async function initApp() {
     
 
     app.innerHTML = `
+        <div class="app__header"></div>
         ${getFrame("left", "iLang", "Введите, что вы хотите перевести...", "")}
         <button class="app__swap" onclick="swap()">
             <img class="app__swap--image" src="./assets/icons/swap.svg" alt="Swap">
         </button>
         ${getFrame("right", "oLang", "", "readonly")}
-        <button class="app__go" onclick="translateText()">Перевести с ChatGPT<img class="app__go--image" src="./assets/icons/go.svg" alt="Go"></button>
+        <button class="app__go" id="go" onclick="translateText()">Перевод с ChatGPT<img class="app__go--image" id="goImage" src="./assets/icons/go.svg" alt="Go"></button>
     `;
 }
 
 async function translateText() {
     const oData = [document.getElementById('iLang').value, document.getElementById('oLang').value, document.getElementById('text-area-left').value];
 
+    document.getElementById('go').disabled = true;
+    
+    document.getElementById('go').classList.toggle('app__go--block')
+    document.getElementById('goImage').classList.toggle('hidden')
+    
     document.getElementById('text-area-right').value = await eel.get_data(oData)();
+    
+    document.getElementById('go').classList.toggle('app__go--block')
+    document.getElementById('goImage').classList.toggle('hidden')
+
+    document.getElementById('go').disabled = false;
 }
 
 function swap() {

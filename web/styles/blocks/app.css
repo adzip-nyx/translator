@@ -7,6 +7,17 @@
     overflow: hidden;
 }
 
+.app__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background-color: rgb(255,255,255,0.8);
+    backdrop-filter: blur(20px);
+    z-index: 999;
+}
+
 .app__frame {
     border-right: 0.5px solid var(--secondary);
     position: relative;
@@ -64,6 +75,7 @@
     cursor: pointer;
     font-size: 18px;
     font-weight: 400;
+    z-index: 1000;
 }
 
 .dropdown__option {
@@ -91,12 +103,21 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 25px;
+    transition: transform 0.2s;
+}
+
+.app__go--block {
+    cursor: wait;
+    color: #888888;
+}
+
+.app__go:hover {
+    transform: scale(1.02);
 }
 
 .app__go--image {
     margin-left: 5px;
 }
-
 
 .app__swap {
     position: absolute;
@@ -110,4 +131,9 @@
     border-radius: 15px;
     border: none;
     cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.app__swap:hover {
+    transform: scale(1.05);
 }
