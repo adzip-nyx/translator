@@ -24,7 +24,7 @@ API_KEY=<вставьте свой API ключ сюда>
 
 1. Для python.
 ```
-pip install openai eel dotenv
+pip install openai eel python-dotenv
 ```
 2. Для node.
 ```
